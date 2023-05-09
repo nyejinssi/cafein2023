@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { authService } from '../fbase';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 const Auth = () => {
     const [email, setEmail] = useState("");
@@ -21,16 +22,30 @@ const Auth = () => {
         try {
             let data;
             if(newAccount){
-                data = authService.createUserWithEmailAndPassword(email, password);
+                data = authService.createUserWithEmailAndPassword(authService, email, password);
             } else {
-                data = authService.signInWithEmailAndPassword(email, password);
+                data = authService.signInWithEmailAndPassword(authService, email, password);
             }
             console.log(data);
         } catch(error) {
             setError(error.message);
         }
     };
-const toggleAccount = () => setNewAccount((prev) => !prev);
+    const toggleAccount = () => setNewAccount((prev) => !prev);
+
+    const onSocialClick = async (event) => {
+        const {
+            target: {name},
+        } = event;
+        let provider;
+        if (name === "google"){
+            provider = new GoogleAuthProvider();
+        }
+        const data = await signInWithPopup(authService, provider);
+        console.log(data);
+
+        
+    };
 
     return (
             <div>
@@ -42,7 +57,7 @@ const toggleAccount = () => setNewAccount((prev) => !prev);
             </form>
     <span onClick={toggleAccount}>{newAccount ? "Sign In" : "Sign Up"}</span>
             <div>
-                <button> continue with google </button>
+                <button onClick = {onSocialClick} name = "google"> continue with google </button>
             </div>
         </div>
     )
