@@ -7,6 +7,7 @@ const Navigation = () => <nav>
         <li><Link to="/profile"> 내 계정 </Link></li>
         <li><Link to="/UserInfo"> 유저 정보 저장</Link></li>
         <li><Link to="/ReView"> 리뷰 </Link></li>
+        <li><Link to="/Test"> 테스트 </Link></li>
     </ul>
 </nav>;
 
