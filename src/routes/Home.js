@@ -1,20 +1,41 @@
+import { dbService } from 'fbase';
 import React, { useState } from 'react';
+import { getFirestore, addDoc, collection } from "firebase/firestore";
 
 const Home = () => {
-    const [review, setReview] = useState("");
-    const onSubmit = (event) => {
+    const [userreview, setUserreview] = useState("");
+    const onSubmit = async (event) => {
         event.preventDefault();
+
+        try {
+            const docRef = await addDoc(collection(dbService, "userreviews"), {
+                userreview,
+                createdAt: Date.now(),
+            });
+            setUserreview("");
+            console.log("Document written with ID: ", docRef.id);
+        } catch (error) {
+            console.error("Error adding document: ", error);
+        }
     };
+
     const onChange = (event) => {
-        const {target: {value}} = event; // event안에 있는 target 안에 있는 value를 가져옴
-        setReview(value);
+        const { target: {value} } = event; 
+        setUserreview(value); 
     };
+
     return (
         <div>
-        <form onSubmit={onSubmit}> 
-            <input value={review} onchange = {onChange}type="text" placeholder="리뷰 작성칸" maxLength={120}/><br/>
-            <input type="submit" value = "저장"/>
-        </form>
+            <form onSubmit = {onSubmit}> 
+                <input 
+                    value = {userreview} 
+                    type = "text" 
+                    placeholder = "write reviews" 
+                    maxLength = {120} 
+                    onChange = {onChange} 
+                />
+                <input type = "submit" value = "저장"/>
+            </form>
         </div>
     );
 };
