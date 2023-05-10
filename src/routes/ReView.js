@@ -2,7 +2,7 @@ import { dbService } from 'fbase';
 import React, { useEffect, useState } from 'react';
 import { getFirestore, addDoc, getDocs, collection, query } from "firebase/firestore";
 
-const Home = () => {
+const ReView = () => {
     const [userreview, setUserreview] = useState("");
     const [userreviews, setUserreviews] = useState([]);
 
@@ -63,4 +63,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default ReView;

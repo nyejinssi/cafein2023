@@ -42,9 +42,7 @@ const Auth = () => {
             provider = new GoogleAuthProvider();
         }
         const data = await signInWithPopup(authService, provider);
-        console.log(data);
-
-        
+        console.log(data);        
     };
 
     return (
@@ -59,9 +57,7 @@ const Auth = () => {
             <div>
                 <button onClick = {onSocialClick} name = "google"> continue with google </button>
             </div>
-        </div>
-    )
-    }
+        </div> ) }
 
 
 export default Auth; 
