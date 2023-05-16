@@ -4,18 +4,16 @@ import { getFirestore, addDoc, getDocs, collection, query } from "firebase/fires
 
 const ReView = () => {
     const [userreview, setUserreview] = useState("");
-    const [userreviews, setUserreviews] = useState([]);
-
+    const [userreviews, setUserreviews] = useState([]); 
     const getReviews = async () => {
-        const dbreviews = query(collection(dbService, "reviews"));
-        const querySnapshot = await getDocs(dbreviews);
-        querySnapshot.forEach((doc) => {
-            const reviewObject = {
-                ...doc.data(),
-                id: doc.id,
+        const dbuserreview = await getDocs(query(collection(dbService, "userReviews")));
+        dbuserreview.forEach((document) => {
+            const userreviewObject = {
+                ...document.data(),
+                id: document.id,
             };
-            setUserreviews((prev) => [reviewObject, ...prev]);
-            });
+            setUserreviews((prev) => [userreviewObject, ...prev]);
+        });
     };
 
     useEffect(() => {
@@ -25,8 +23,8 @@ const ReView = () => {
     const onSubmit = async (event) => {
         event.preventDefault();
         try {
-            const docRef = await addDoc(collection(dbService, "userreviews"), {
-                text: userreview,
+            const docRef = await addDoc(collection(dbService, "userReviews"), {
+                userreview,
                 createdAt: Date.now(),
             });
             setUserreview("");
@@ -40,6 +38,7 @@ const ReView = () => {
         const { target: {value} } = event; 
         setUserreview(value); 
     };
+    console.log(userreviews);
 
     return (
         <div>
@@ -54,14 +53,12 @@ const ReView = () => {
                 <input type = "submit" value = "저장"/>
             </form>
             <div>
-                {userreviews.map((userreview) => (
-                    <div key={userreview.id} >
-                        <h4>{userreview.userreview}</h4>
-                    </div> ))}
+                {userreviews.map((userreview) => <div key={userreview.id}>
+                    <h4>{userreview.userreview}</h4>
+                </div>) }
             </div>
         </div>
     );
 };
 
 export default ReView;
-

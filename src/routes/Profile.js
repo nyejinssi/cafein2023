@@ -7,11 +7,10 @@ const Profile = () => {
     authService.signOut();
     navigate('/');
   };
+
   return (
     <>
-      <button onClick={onLogOutClick}>Log Out</button>
-    </>
-  );
-};
+      <button onClick={onLogOutClick}> 로 그 아 웃 </button></>
+  ); };
 
 export default Profile;

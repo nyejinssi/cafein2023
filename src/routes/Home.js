@@ -5,10 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Profile from "../routes/Profile";
 
 const Home = () => {
-
-    <div>
-        hell0
-    </div>
+    
 }
 
 export default Home;
