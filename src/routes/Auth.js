@@ -63,7 +63,7 @@ const Auth = () => {
             </form>
     <span onClick={toggleAccount}>{newAccount ? "Sign In" : "Sign Up"}</span>
             <div>
-                <button onClick = {onSocialClick} name = "google"> 구글로 회원가입 </button>
+                <button onClick = {onSocialClick} name = "google"> 구글로 계속하기 </button>
             </div>
         </div> ) }
 
