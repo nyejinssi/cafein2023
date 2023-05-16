@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { authService } from '../fbase';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
+import UserInfo from 'routes/UserInfo';
 
 const Auth = () => {
     const [email, setEmail] = useState("");
@@ -32,6 +34,11 @@ const Auth = () => {
         }
     };
     const toggleAccount = () => setNewAccount((prev) => !prev);
+    
+    const navigate = useNavigate();
+    const InputUserInfo = () => {
+        navigate('/UserInfo');
+    };
 
     const onSocialClick = async (event) => {
         const {
@@ -43,6 +50,7 @@ const Auth = () => {
         }
         const data = await signInWithPopup(authService, provider);
         console.log(data);        
+        InputUserInfo();
     };
 
     return (

@@ -5,7 +5,6 @@ import { getFirestore, addDoc, getDocs, collection } from "firebase/firestore";
 const UserInfo = () => {
     const [username, setUsername] = useState("");
     const [userphonenumber, setUserPhonenumber] = useState("");
-    const [useraddress, setUserAddress] = useState("");
 
     const onSubmit = async (event) => {
         event.preventDefault();
@@ -13,7 +12,6 @@ const UserInfo = () => {
             const docRef = await addDoc(collection(dbService, "userInfomation"), {
                 name: username,
                 text: userphonenumber,
-                text: useraddress,
                 createdAt: Date.now(),
             });
             setUsername("");
@@ -30,8 +28,6 @@ const UserInfo = () => {
             setUsername(value); 
         } else if (name === "usersphonenumber"){
             setUserPhonenumber(value);
-        } else if (name === "usersaddress"){
-            setUserAddress(value);  
         }
     };
 
@@ -39,7 +35,6 @@ const UserInfo = () => {
         <div>
             <form onSubmit = {onSubmit}> 
                 <input value = {username} name= "usersname" type = "name" placeholder = " 이 름 " maxLength = {15} onChange = {onChange} required/> <br/>
-                <input value = {useraddress} name= "usersaddress" type = "text" placeholder = " 주 소 " maxLength = {30} onChange = {onChange} required /> <br/>
                 <input value = {userphonenumber} name="usersphonenumber" type = "tel" placeholder = " 전 화 번 호 " maxLength = {11} onChange = {onChange} required /> <br/>
                 <input type = "submit" value = "저장"/>
             </form>

@@ -5,9 +5,8 @@ import Navigation from "./Navigation";
 import Auth from "../routes/Auth";
 import Home from "../routes/Home";
 import Profile from "../routes/Profile";
-import UserInfo from '../routes/UserInfo';
 import ReView from '../routes/ReView';
-import Test from '../routes/Test';
+import PopupPostCode from 'routes/PopupPostCode';
 
 const AppRouter = ({isLoggedIn, userObj}) => {
     return (
@@ -18,9 +17,8 @@ const AppRouter = ({isLoggedIn, userObj}) => {
                 <>
                     <Route exact path="/" element ={<Home/>}/>
                     <Route exact path="/profile" element ={<Profile/>}/>
-                    <Route exact path="/UserInfo" element ={<UserInfo/>}/>
                     <Route exact path="/ReView" element ={<ReView/>}/>
-                    <Route exact path="/Test" element ={<Test/>}/>
+                    <Route exact path="/PopupPostCode" element ={<PopupPostCode/>}/>
                 </> 
                 ): (
                     <Route exact path="/" element ={<Auth/>}/>                    

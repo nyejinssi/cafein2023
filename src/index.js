@@ -10,3 +10,4 @@ import 'firebase/compat/firestore';
 
 const root = document.getElementById('root');
 ReactDOM.createRoot(root).render(<App />);
+
