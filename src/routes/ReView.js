@@ -1,31 +1,30 @@
 import { dbService } from 'fbase';
 import React, { useEffect, useState } from 'react';
-import { getFirestore, addDoc, getDocs, collection, query } from "firebase/firestore";
+import { getFirestore, addDoc, getDocs, collection, query, onSnapshot, orderBy, serverTimestamp } from "firebase/firestore";
+import Review from 'components/Review';
 
-const ReView = () => {
+const ReView = ({userObj}) => {
     const [userreview, setUserreview] = useState("");
     const [userreviews, setUserreviews] = useState([]); 
-    const getReviews = async () => {
-        const dbuserreview = await getDocs(query(collection(dbService, "userReviews")));
-        dbuserreview.forEach((document) => {
-            const userreviewObject = {
-                ...document.data(),
-                id: document.id,
-            };
-            setUserreviews((prev) => [userreviewObject, ...prev]);
-        });
-    };
 
     useEffect(() => {
-        getReviews();
+        const q = query(collection(dbService, "userReviews"));
+        onSnapshot(q, (snapshot) => {
+            const userreviewArray = snapshot.docs.map(doc => ({
+                ...doc.data(),
+                id: doc.id, 
+            }));
+        setUserreviews(userreviewArray);
+        });
     }, []);
 
     const onSubmit = async (event) => {
         event.preventDefault();
         try {
             const docRef = await addDoc(collection(dbService, "userReviews"), {
-                userreview,
-                createdAt: Date.now(),
+                text: userreview,
+                createdAt: serverTimestamp(),
+                creatorId: userObj.uid,
             });
             setUserreview("");
             console.log("Document written with ID: ", docRef.id);
@@ -38,7 +37,6 @@ const ReView = () => {
         const { target: {value} } = event; 
         setUserreview(value); 
     };
-    console.log(userreviews);
 
     return (
         <div>
@@ -53,12 +51,14 @@ const ReView = () => {
                 <input type = "submit" value = "저장"/>
             </form>
             <div>
-                {userreviews.map((userreview) => <div key={userreview.id}>
-                    <h4>{userreview.userreview}</h4>
-                </div>) }
+                {userreviews.map((userreview) => (
+                    <Review key={userreview.id} reviewObj={userreview} isOwner={userreview.creatorId === userObj.uid} />
+                ))}
             </div>
         </div>
     );
 };
+
+
 
 export default ReView;

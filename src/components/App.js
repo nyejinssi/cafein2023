@@ -19,7 +19,8 @@ function App() {
     });
   }, []);
   
-  return (<>{init ? (<AppRouter isLoggedIn={isLoggedIn} userObj={userObj} /> 
+  return (<>{init ? (
+      <AppRouter isLoggedIn={isLoggedIn} userObj={userObj} /> 
     ): (
       "Initializing..." )}
       </>);
