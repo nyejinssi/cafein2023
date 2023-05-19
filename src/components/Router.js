@@ -7,6 +7,8 @@ import Home from "../routes/Home";
 import ReView from '../routes/ReView';
 import UserInfo from 'routes/UserInfo';
 import ModalPage from 'routes/ModalPage';
+import MNprofile from 'routes/MNprofile';
+import MNreview from 'routes/MNprofile';
 
 const AppRouter = ({isLoggedIn, userObj}) => {
     return (
@@ -19,6 +21,8 @@ const AppRouter = ({isLoggedIn, userObj}) => {
                     <Route exact path="/ReView" element ={<ReView/>}/>
                     <Route exact path="/UserInfo" element ={<UserInfo/>}/>
                     <Route exact path="/ModalPage" element ={<ModalPage/>}/>
+                    <Route exact path='/MNreview' element={<MNreview/>}/>
+                    <Route exact path='/MNprofile' element={<MNprofile/>}/>
                 </> 
                 ): (
                     <Route exact path="/" element ={<Auth/>}/>            

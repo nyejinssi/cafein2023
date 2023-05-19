@@ -7,6 +7,7 @@ import './Auth.css';
 import logo from './logo_2.jpg';
 import GoogleLogin from './btn_google_signin_light_normal_web.png';
 
+
 const Auth = () => {
     const navigate = useNavigate();
     const InputUserInfo = () => { navigate('/UserInfo'); };
@@ -16,6 +17,10 @@ const Auth = () => {
     const [newAccount, setNewAccount] = useState(true); 
     const [error, setError] = useState(""); 
 
+    const onSubMitClick = () => {
+        navigate('/UserInfo');
+      };
+
     const onSubmit = (event) => {
         event.preventDefault();
         try{
@@ -24,8 +29,7 @@ const Auth = () => {
                 createUserWithEmailAndPassword(authService, email, password)
                 .then((userCredential) => {
                     const user = userCredential.user;
-                    console.log(user);
-                    InputUserInfo();   })
+                    console.log(user);  })
             } else {
                 signInWithEmailAndPassword(authService, email, password)
                 .then((userCredential) => {
@@ -37,6 +41,8 @@ const Auth = () => {
             setError(error.message);
         }
     };
+
+    
 
     const toggleAccount = () => setNewAccount((prev) => !prev);
 
@@ -66,7 +72,7 @@ const Auth = () => {
                 <form onSubmit={onSubmit}>
                     <input name="email" type="text" className='LoginEmail' placeholder="Email" required value={email} onChange={onChange} />
                     <input name="password"  className='LoginPassword' type="password" placeholder="Password" required value={password} onChange={onChange} />
-                    <input type="submit" className = 'AuthSubmit' value={newAccount ? "회원가입" : "로그인"} />
+                    <input type="submit" className = 'AuthSubmit' value={newAccount ? "회원가입" : "로그인"} onClick={onSubMitClick}/>
                     {error}
                 </form>
                     <div className='SignToggle' onClick={toggleAccount}>{newAccount ? "로그인" : "회원가입"}</div>
