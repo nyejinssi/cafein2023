@@ -1,11 +1,12 @@
 import { dbService } from 'fbase';
 import React, { useEffect, useState } from 'react';
+import { authService } from '../fbase';
 import { getFirestore, addDoc, getDocs, collection, query, onSnapshot, orderBy, serverTimestamp } from "firebase/firestore";
-import Review from 'components/Review';
 
-const ReView = ({userObj}) => {
+const ReView = () => {
     const [userreview, setUserreview] = useState("");
     const [userreviews, setUserreviews] = useState([]); 
+    const user = authService().currentUser;
 
     useEffect(() => {
         const q = query(collection(dbService, "userReviews"));
@@ -24,7 +25,7 @@ const ReView = ({userObj}) => {
             const docRef = await addDoc(collection(dbService, "userReviews"), {
                 text: userreview,
                 createdAt: serverTimestamp(),
-                creatorId: userObj.uid,
+                creatorId: user.uid,
             });
             setUserreview("");
             console.log("Document written with ID: ", docRef.id);
@@ -50,15 +51,16 @@ const ReView = ({userObj}) => {
                 /> <br/>
                 <input type = "submit" value = "저장"/>
             </form>
+
             <div>
                 {userreviews.map((userreview) => (
-                    <Review key={userreview.id} reviewObj={userreview} isOwner={userreview.creatorId === userObj.uid} />
+                    <div key = {userreview.uid}>
+                        <h4> {userreview.text} </h4>
+                    </div>
                 ))}
             </div>
         </div>
     );
 };
-
-
 
 export default ReView;

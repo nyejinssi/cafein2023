@@ -2,70 +2,83 @@ import React, { useState } from 'react';
 import { authService } from '../fbase';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
-import UserInfo from 'routes/UserInfo';
+import UserInfo from '../routes/UserInfo';
+import './Auth.css';
+import logo from './logo_2.jpg';
+import GoogleLogin from './btn_google_signin_light_normal_web.png';
 
 const Auth = () => {
+    const navigate = useNavigate();
+    const InputUserInfo = () => { navigate('/UserInfo'); };
+    
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [newAccount, setNewAccount] = useState(true); 
     const [error, setError] = useState(""); 
 
-    const onChange = (event) => {
-        const {target: {name, value}} = event;
-        if(name === "email"){
-            setEmail(value);
-        }   else if(name === "password"){
-            setPassword(value);
-        }
-    };
-
     const onSubmit = (event) => {
         event.preventDefault();
-        try {
+        try{
             let data;
             if(newAccount){
-                data = authService.createUserWithEmailAndPassword(authService, email, password);
+                createUserWithEmailAndPassword(authService, email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    console.log(user);
+                    InputUserInfo();   })
             } else {
-                data = authService.signInWithEmailAndPassword(authService, email, password);
+                signInWithEmailAndPassword(authService, email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    console.log(user);
+                })
             }
-            console.log(data);
-        } catch(error) {
+        } catch(error){
             setError(error.message);
         }
     };
+
     const toggleAccount = () => setNewAccount((prev) => !prev);
-    
-    const navigate = useNavigate();
-    const InputUserInfo = () => {
-        navigate('/UserInfo');
-    };
 
     const onSocialClick = async (event) => {
-        const {
-            target: {name},
-        } = event;
+        const { target: {name},} = event;
         let provider;
-        if (name === "google"){
-            provider = new GoogleAuthProvider();
-        }
+        if (name === "google"){ provider = new GoogleAuthProvider(); }
         const data = await signInWithPopup(authService, provider);
-        console.log(data);        
-        InputUserInfo();
     };
 
-    return (
-            <div>
-            <form onSubmit={onSubmit}>
-                <input name="email" type="text" placeholder="Email" required value = {email} onChange={onChange}/><br></br>
-                <input name="password" type="password" placeholder="Password" required value = {password} onChange={onChange} /><br></br>
-                <input type="submit" value={newAccount ? "Sign Up" : "Sign In"} /><br></br>
-                {error}
-            </form>
-    <span onClick={toggleAccount}>{newAccount ? "Sign In" : "Sign Up"}</span>
-            <div>
-                <button onClick = {onSocialClick} name = "google"> 구글로 계속하기 </button>
-            </div>
-        </div> ) }
+    const onChange = (event) => {
+        const {target: {name, value}} = event;
+        if(name === "email"){ setEmail(value);
+        }   else if(name === "password"){ setPassword(value); } };
 
+        return (
+            <>
+            <div className='table-container'>
+                <table>              
+                        <tr>
+                            <td className='logoWrap'> <img src={logo} className="logo_img" alt="logo" /> </td>
+                            <td className="LoginTitle"> Cafe인 </td>
+                        </tr>
+                </table>
+            </div>
+            <div className='LoginConts'>
+                <form onSubmit={onSubmit}>
+                    <input name="email" type="text" className='LoginEmail' placeholder="Email" required value={email} onChange={onChange} />
+                    <input name="password"  className='LoginPassword' type="password" placeholder="Password" required value={password} onChange={onChange} />
+                    <input type="submit" className = 'AuthSubmit' value={newAccount ? "회원가입" : "로그인"} />
+                    {error}
+                </form>
+                    <div className='SignToggle' onClick={toggleAccount}>{newAccount ? "로그인" : "회원가입"}</div>
+                    <img className='G-SingIn' src={GoogleLogin} onClick={onSocialClick} name="google" alt="구글로 로그인" />
+            </div>
+            <div>
+                <input type='button' value="아이디 찾기" />
+                <input type='button' value="비밀번호 찾기" />
+            </div>
+            </>
+             );
+        }
+    
 
 export default Auth; 
