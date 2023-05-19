@@ -2,12 +2,29 @@ import React, {useEffect, useState} from 'react';
 import { createRoot } from 'react-dom';
 import AppRouter from 'components/Router';
 import {authService} from '../fbase';
-import ModalPage from 'routes/ModalPage';
 
-const root = createRoot(document.getElementById('root'));
+function App() {
+  const [init, setInit] = useState(false); // init = false
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userObj, setUserObj] = useState(null); 
 
-function App() {  
-  return ( <div className="App"> <ModalPage /> </div>  );
+  useEffect(() => {
+    authService.onAuthStateChanged((user) => {
+      if(user){
+        setIsLoggedIn(true);
+        setUserObj(user);
+      } else {
+        setIsLoggedIn(false);
+      }
+      setInit(true);
+    });
+  }, []);
+  
+  return (<>{init ? (
+      <AppRouter isLoggedIn={isLoggedIn} userObj={userObj} /> 
+    ): (
+      "Initializing..." )}
+      </>);
 }
 
 export default App;

@@ -9,5 +9,7 @@ import 'firebase/compat/firestore';
 
 
 const root = document.getElementById('root');
-const modalroot = document.getElementById('modal-root');
-ReactDOM.createRoot(modalroot).render(<App/>);
+ReactDOM.createRoot(root).render(<App/>);
+
+
+

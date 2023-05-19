@@ -5,7 +5,6 @@ import { getFirestore, addDoc, getDocs, collection } from "firebase/firestore";
 const UserInfo = () => {
     const [username, setUsername] = useState("");
     const [userphonenumber, setUserPhonenumber] = useState("");
-
     const onSubmit = async (event) => {
         event.preventDefault();
         try {
