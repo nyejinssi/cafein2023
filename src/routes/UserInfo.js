@@ -1,25 +1,38 @@
 import { dbService, authService } from 'fbase';
 import React, { useEffect, useState } from 'react';
-import { getFirestore, addDoc, getDocs, collection } from "firebase/firestore";
-import ModalPage from './ModalPage';
+import { getFirestore, addDoc, getDocs, collection, query, onSnapshot, orderBy, serverTimestamp } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
+import ModalPage from 'routes/ModalPage';
+import Home from 'routes/Home';
 
 const UserInfo = () => {
+    const user = authService.currentUser;
     const [username, setUsername] = useState("");
     const [userphonenumber, setUserPhonenumber] = useState("");
+    const [userInfomation, setUserInfo] = useState([]);
     const navigate = useNavigate();
-    const changeAddress = () => {
-        navigate('/ModalPage');
-    };
+    const InputDone = () => { navigate('/ModalPage');};    
+    useEffect(() => {
+            const q = query(collection(dbService, "userInfomation"));
+            onSnapshot(q, (snapshot) => {
+                const UserInfoArray = snapshot.docs.map(doc => ({
+                    ...doc.data(),
+                    id: doc.id, 
+                }));
+            setUserInfo(UserInfoArray);
+            });
+        }, []);
 
     const onSubmit = async (event) => {
         event.preventDefault();
         try {
             const docRef = await addDoc(collection(dbService, "userInfomation"), {
                 name: username,
-                text: userphonenumber,
+                number: userphonenumber,
+                createrId : user.uid,
                 createdAt: Date.now(), });
             setUsername("");
+            setUserPhonenumber("");
             console.log("Document written with ID: ", docRef.id);
         } catch (error) {
             console.error("Error adding document: ", error);
@@ -38,14 +51,9 @@ const UserInfo = () => {
     return(
         <div>
             <form onSubmit = {onSubmit}> 
-                <tr>
                     <input value = {username} name= "usersname" type = "name" placeholder = " 이 름 " maxLength = {15} onChange = {onChange} required/> <br/>
                     <input value = {userphonenumber} name="usersphonenumber" type = "tel" placeholder = " 전 화 번 호 " maxLength = {11} onChange = {onChange} required /> <br/>
-                </tr>
-                <tr> 
-                    <button onClick={changeAddress}> 주소지 변경 </button>
-                    <input type = "submit" value = " 저 장 " onSubmit={onSubmit}/>
-                </tr>
+                    <input type = "submit" value = " 다음 " onClick={InputDone}required/><br/>
             </form>
         </div>
     );  

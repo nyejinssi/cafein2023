@@ -5,10 +5,10 @@ import Navigation from "./Navigation";
 import Auth from "../routes/Auth";
 import Home from "../routes/Home";
 import ReView from '../routes/ReView';
-import UserInfo from 'routes/UserInfo';
-import ModalPage from 'routes/ModalPage';
-import MNprofile from 'routes/MNprofile';
-import MNreview from 'routes/MNprofile';
+import UserInfo from '../routes/UserInfo';
+import ModalPage from '../routes/ModalPage';
+import MNprofile from '../routes/MNprofile';
+import MNreview from '../routes/MNprofile';
 
 const AppRouter = ({isLoggedIn, userObj}) => {
     return (

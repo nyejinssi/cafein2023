@@ -1,18 +1,29 @@
 import React, { useCallback, useState } from "react";
 import Modal from "../components/Modal";
 import DaumPostcode from "react-daum-postcode";
+import { useNavigate } from "react-router-dom";
+import { dbService, authService } from "../fbase";
+import { getFirestore, addDoc, getDocs, collection, query, onSnapshot } from "firebase/firestore";
+import { useEffect } from "react";
+
 function ModalPage() {
+  const user = authService.currentUser;
   const [modalVisible, setModalVisible] = useState(false);
   const [isOpenSecondPopup, setIsOpenSecondPopup] = useState(false);
   const [address, setAddress] = useState(null);
   const [postCodes, setPostCodes] = useState(null);
   const [detailAddress, setDetailAddress] = useState("");
+  const [userAddress, setUserAddress] = useState([]);
 
+  const navigate = useNavigate();
+  const InputDone = () => { navigate('/Home');};
+  
   const openModal = useCallback(() => { setModalVisible(true); }, []);
 
   const closeModal = useCallback(() => { setModalVisible(false); }, []);
 
   const onChange = useCallback((e) => { setDetailAddress(e.target.value); }, []);
+
   const handleComplete = useCallback((data) => {
     let fullAddress = data.address;
     let extraAddress = "";
@@ -31,6 +42,32 @@ function ModalPage() {
     setIsOpenSecondPopup(true);
   }, []);
 
+  useEffect(() => {
+            const q = query(collection(dbService, "userAddress"));
+            onSnapshot(q, (snapshot) => {
+                const UserAddressArray = snapshot.docs.map(doc => ({
+                    ...doc.data(),
+                    id: doc.id, 
+                }));
+            setUserAddress(UserAddressArray);
+            });
+        }, []);
+  
+  const onSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const docRef = await addDoc(collection(dbService, "userAddress"), {
+                number: postCodes,
+                address: address,
+                content: detailAddress,
+                createrId : user.uid,
+                createdAt: Date.now() });
+            console.log("Document written with ID: ", docRef.id);
+        } catch (error) {
+            console.error("Error adding document: ", error);
+        }
+    };
+
   const onClick = useCallback(
     (e) => {
       e.preventDefault();
@@ -43,7 +80,7 @@ function ModalPage() {
 
   return (
     <>
-      <h3 className="text">배송지</h3>
+    <form onSubmit={onSubmit}>
       {address ? (
         <div>
           <div className="text">주소 : {address }</div>
@@ -64,8 +101,12 @@ function ModalPage() {
               <input placeholder="상세 주소를 입력해 주세요" onChange={onChange} value={detailAddress} />
               <button onClick={onClick}>저장</button> </div> )}
         </Modal>
-      )}
+      )}      
+        <input type = "checkbox" value = "동의" required/> 여러분의 개인정보를 저장하는데 동의하십니까? <br/>
+        <input type = "submit" value = "회원가입 완료하기" onClick = {InputDone} required/><br/>
+      </form>
     </>
   );
 }
+
 export default ModalPage;

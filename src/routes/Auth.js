@@ -7,7 +7,6 @@ import './Auth.css';
 import logo from './logo_2.jpg';
 import GoogleLogin from './btn_google_signin_light_normal_web.png';
 
-
 const Auth = () => {
     const navigate = useNavigate();
     const InputUserInfo = () => { navigate('/UserInfo'); };
@@ -16,10 +15,6 @@ const Auth = () => {
     const [password, setPassword] = useState("");
     const [newAccount, setNewAccount] = useState(true); 
     const [error, setError] = useState(""); 
-
-    const onSubMitClick = () => {
-        navigate('/UserInfo');
-      };
 
     const onSubmit = (event) => {
         event.preventDefault();
@@ -42,8 +37,6 @@ const Auth = () => {
         }
     };
 
-    
-
     const toggleAccount = () => setNewAccount((prev) => !prev);
 
     const onSocialClick = async (event) => {
@@ -59,29 +52,29 @@ const Auth = () => {
         }   else if(name === "password"){ setPassword(value); } };
 
         return (
-            <>
-            <div className='table-container'>
-                <table>              
-                        <tr>
-                            <td className='logoWrap'> <img src={logo} className="logo_img" alt="logo" /> </td>
-                            <td className="LoginTitle"> Cafe인 </td>
-                        </tr>
-                </table>
-            </div>
-            <div className='LoginConts'>
-                <form onSubmit={onSubmit}>
-                    <input name="email" type="text" className='LoginEmail' placeholder="Email" required value={email} onChange={onChange} />
-                    <input name="password"  className='LoginPassword' type="password" placeholder="Password" required value={password} onChange={onChange} />
-                    <input type="submit" className = 'AuthSubmit' value={newAccount ? "회원가입" : "로그인"} onClick={onSubMitClick}/>
-                    {error}
-                </form>
-                    <div className='SignToggle' onClick={toggleAccount}>{newAccount ? "로그인" : "회원가입"}</div>
-                    <img className='G-SingIn' src={GoogleLogin} onClick={onSocialClick} name="google" alt="구글로 로그인" />
-            </div>
-            <div>
-                <input type='button' value="아이디 찾기" />
-                <input type='button' value="비밀번호 찾기" />
-            </div>
+                <>
+                <div className='table-container'>
+                    <table>              
+                            <tr>
+                                <td className='logoWrap'> <img src={logo} className="logo_img" alt="logo" /> </td>
+                                <td className="LoginTitle"> Cafe인 </td>
+                            </tr>
+                    </table>
+                </div>
+                <div className='LoginConts'>
+                    <form onSubmit={onSubmit}>
+                        <input name="email" type="text" className='LoginEmail' placeholder="Email" required value={email} onChange={onChange} />
+                        <input name="password"  className='LoginPassword' type="password" placeholder="Password" required value={password} onChange={onChange} />
+                        <input type="submit" className = 'AuthSubmit' value={newAccount ? "회원가입" : "로그인"} />
+                        {error}
+                    </form>
+                        <div className='SignToggle' onClick={toggleAccount}>{newAccount ? "로그인" : "회원가입"}</div>
+                        <img className='G-SingIn' src={GoogleLogin} onClick={onSocialClick} name="google" alt="구글로 로그인" />
+                </div>
+                <div>
+                    <input type='button' value="아이디 찾기" />
+                    <input type='button' value="비밀번호 찾기" />
+                </div>
             </>
              );
         }
