@@ -2,6 +2,7 @@ import { getAuth, updatePassword } from 'firebase/auth';
 import React, { useState } from 'react';
 import { authService } from '../fbase';
 import { useNavigate } from 'react-router-dom';
+
 const PWchange = () => {
     const user = authService.currentUser;
     const [Prepswd, setPrepswd] = useState("");
@@ -9,9 +10,7 @@ const PWchange = () => {
     const [Newpswdcheck,setNewpswdcheck] = useState("");
     const [error, setError] = useState(""); 
     const navigate = useNavigate();
-    const PWResultPage = () => {
-        navigate('/PWResult');
-    };
+    const PWResultPage = () => { navigate('/PWResult'); };
 
     const errorMessage = {
         "auth/weak-password": "비밀번호는 6자리 이상이어야 합니다.",
@@ -49,14 +48,12 @@ const PWchange = () => {
       return (
         <div>
             <form onSubmit={onSubmit}>
-                <tr>
                     <input name="prepassword" type="password" value = {Prepswd} placeholder="기존 비밀번호" onChange={onChange} required/><br/>
                     <input name="newpassword" type="password" value = {newPassword} placeholder="새 비밀번호" onChange={onChange} required/><br/>
                     <input name="passwordcheck" type="password" value = {Newpswdcheck} placeholder="새 비밀번호 확인" onChange={onChange} required/><br/>
-                    <input type="button" value="비밀번호 변경" />
-                    {PWResultPage()}                    
-                </tr>
+                    <input type="submit" value="비밀번호 변경" />              
             </form>
+            {PWResultPage}
         </div>
     )
 };

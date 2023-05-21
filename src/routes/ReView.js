@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { getFirestore, addDoc, getDocs, collection, query, onSnapshot, orderBy, serverTimestamp } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
+import Review from 'components/Review';
 
 const ReView = () => {
     const [userreview, setUserreview] = useState("");
@@ -10,7 +11,6 @@ const ReView = () => {
     const user = authService.currentUser;
     const navigate = useNavigate();
     const ReviewDone = () => { navigate('/Home');};
-
     useEffect(() => {
         const q = query(collection(dbService, "userReviews"));
         onSnapshot(q, (snapshot) => {
@@ -56,9 +56,7 @@ const ReView = () => {
             </form>
             <div>
                 {userreviews.map((userreview) => (
-                    <div key = {userreview.uid}>
-                        <h4> {userreview.text} </h4>
-                    </div>
+                    <Review key={userreview.id} userreviewObj={userreview} />
                 ))}
             </div>
         </div>
