@@ -26,11 +26,13 @@ const reAuthentication = () => {
     };
     
       return (
-        <form onSubmit={onSubmit}>
-            본인인증을 위해 비밀번호를 입력하세요.
-            <input name="inputword" value={inputword} type="password" placeholder="비밀번호" onChange={onChange} required />
-            <input type="submit" value="개인정보 수정하기" onClick = {check} required/>
-        </form>
+        <div>
+            <form onSubmit={onSubmit}> 본인인증을 위해 비밀번호를 입력하세요.
+                <input name="inputword" value={inputword} type="password" placeholder="비밀번호" onChange={onChange} required />
+                <input type="submit" value="개인정보 수정하기" onClick = {check} required/>
+            </form>
+        {ProfilePage}
+        </div>
   )
 };
 

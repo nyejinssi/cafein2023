@@ -24,11 +24,10 @@ PWchange : 비밀번호 변경
 구현 완료
 ** Modal, Portal, ModalPage : 주소 관련
 ** ReAuth, MNprofile, PWchange, PWResult(비밀번호 변경 관련), : 계정정보변경 페이지
-** Auth : 로그인 / 회원가입
-** UserInfo : 회원 정보 ( 이름 , 전화번호 )
-** 
-** 
+** Auth -> UserInfo -> ModalPage -> SignUpDone : 개인정보 
+
 
 
 --- 아직 구현 다 안된 페이지 ---
-** 이름,주소변경페이지
+** 유저정보 변경페이지
+** 리뷰 페이지

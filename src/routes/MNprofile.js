@@ -13,10 +13,8 @@ const MNprofile = () => {
     
     return (
          <div>
-            계정 정보
-            <input type = "Submit" value="수정" onClick={changeUserInfo}/> <br/>
-            비밀번호
-            <input type = "submit" value="변경" onClick={changePW}/>
+            계정 정보 <input type = "Submit" value="수정" onClick={changeUserInfo}/> <br/>
+            비밀번호 <input type = "submit" value="변경" onClick={changePW}/>
         </div>
  );
 };
