@@ -10,8 +10,10 @@ const UserInfo = () => {
     const [username, setUsername] = useState("");
     const [userphonenumber, setUserPhonenumber] = useState("");
     const [userInfomation, setUserInfo] = useState([]);
+
     const navigate = useNavigate();
     const InputDone = () => { navigate('/ModalPage');};    
+
     useEffect(() => {
             const q = query(collection(dbService, "userInfomation"));
             onSnapshot(q, (snapshot) => {
@@ -37,6 +39,7 @@ const UserInfo = () => {
         } catch (error) {
             console.error("Error adding document: ", error);
         }
+        InputDone();
     };
 
     const onChange = (event) => {
@@ -53,11 +56,10 @@ const UserInfo = () => {
             <form onSubmit = {onSubmit}> 
                     <input value = {username} name= "usersname" type = "name" placeholder = " 이 름 " maxLength = {15} onChange = {onChange} required/> <br/>
                     <input value = {userphonenumber} name="usersphonenumber" type = "tel" placeholder = " 전 화 번 호 " maxLength = {11} onChange = {onChange} required /> <br/>
-                    <input type = "submit" value = " 다음 " onClick={InputDone}required/><br/>
+                    <input type = "submit" value = " 다음 " required/><br/>
             </form>
         </div>
-    );  
-    
+    );      
 };
 
 export default UserInfo;

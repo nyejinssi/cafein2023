@@ -9,6 +9,7 @@ import UserInfo from '../routes/UserInfo';
 import ModalPage from '../routes/ModalPage';
 import MNprofile from '../routes/MNprofile';
 import MNreview from '../routes/MNprofile';
+import Logout from '../routes/Logout';
 
 const AppRouter = ({isLoggedIn, userObj}) => {
     return (
@@ -23,6 +24,7 @@ const AppRouter = ({isLoggedIn, userObj}) => {
                     <Route exact path="/ModalPage" element ={<ModalPage/>}/>
                     <Route exact path='/MNreview' element={<MNreview/>}/>
                     <Route exact path='/MNprofile' element={<MNprofile/>}/>
+                    <Route exact path='/Logout' element={<Logout/>}/>
                 </> 
                 ): (
                     <Route exact path="/" element ={<Auth/>}/>            

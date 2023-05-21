@@ -70,10 +70,8 @@ const Auth = () => {
                     </form>
                         <div className='SignToggle' onClick={toggleAccount}>{newAccount ? "로그인" : "회원가입"}</div>
                         <img className='G-SingIn' src={GoogleLogin} onClick={onSocialClick} name="google" alt="구글로 로그인" />
-                </div>
-                <div>
-                    <input type='button' value="아이디 찾기" />
-                    <input type='button' value="비밀번호 찾기" />
+                        <input type='button' value="비밀번호 찾기" />
+                        {InputUserInfo}
                 </div>
             </>
              );
