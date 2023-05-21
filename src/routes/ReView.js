@@ -1,13 +1,15 @@
-import { dbService } from 'fbase';
+import { dbService, authService } from 'fbase';
 import React, { useEffect, useState } from 'react';
-import { authService } from '../fbase';
 import { getFirestore, addDoc, getDocs, collection, query, onSnapshot, orderBy, serverTimestamp } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
 
 const ReView = () => {
     const [userreview, setUserreview] = useState("");
     const [userreviews, setUserreviews] = useState([]); 
-    const user = authService().currentUser;
+    const user = authService.currentUser;
+    const navigate = useNavigate();
+    const ReviewDone = () => { navigate('/Home');};
 
     useEffect(() => {
         const q = query(collection(dbService, "userReviews"));
@@ -25,7 +27,7 @@ const ReView = () => {
         try {
             const docRef = await addDoc(collection(dbService, "userReviews"), {
                 text: userreview,
-                createdAt: serverTimestamp(),
+                createdAt: Date.now(),
                 creatorId: user.uid,
             });
             setUserreview("");
@@ -52,7 +54,6 @@ const ReView = () => {
                 /> <br/>
                 <input type = "submit" value = "저장"/>
             </form>
-
             <div>
                 {userreviews.map((userreview) => (
                     <div key = {userreview.uid}>
