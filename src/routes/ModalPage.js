@@ -16,7 +16,6 @@ function ModalPage() {
   const [userAddress, setUserAddress] = useState([]);
 
   const navigate = useNavigate();
-  const InputDone = () => { navigate('/Home');};
   
   const openModal = useCallback(() => { setModalVisible(true); }, []);
 
@@ -103,7 +102,7 @@ function ModalPage() {
         </Modal>
       )}      
         <input type = "checkbox" value = "동의" required/> 여러분의 개인정보를 저장하는데 동의하십니까? <br/>
-        <input type = "submit" value = "회원가입 완료하기" onClick = {InputDone} required/><br/>
+        <input type = "submit" value = "회원가입 완료하기" onClick = {()=> {navigate('/Home');}} required/><br/>
       </form>
     </>
   );

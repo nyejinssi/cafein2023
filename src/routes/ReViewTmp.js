@@ -1,3 +1,4 @@
+// 게시글 삭제, 수정
 import { deleteDoc, doc, updateDoc } from "@firebase/firestore";
 import { dbService } from "fbase";
 import React, {useState} from "react";

@@ -1,3 +1,4 @@
+// 회원정보 수정 완료
 const UserInfoChangeDone = () => {
     return (
         <div>
@@ -7,3 +8,4 @@ const UserInfoChangeDone = () => {
     };
 
 export default UserInfoChangeDone;
+

@@ -1,4 +1,4 @@
-
+// PWchange 다음 페이지 ; 비밀번호 변경 완료 페이지
 import React from "react";
 
 const PWResult = () => {

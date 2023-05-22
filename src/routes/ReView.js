@@ -1,3 +1,4 @@
+// 리뷰 페이지
 import { dbService, authService } from 'fbase';
 import React, { useEffect, useState } from 'react';
 import { getFirestore, addDoc, getDocs, collection, query, onSnapshot, orderBy, serverTimestamp } from "firebase/firestore";

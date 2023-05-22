@@ -9,14 +9,11 @@ Profile : 로그아웃
 cart : 장바구니
 PWchange : 비밀번호 변경
 
-
 << 드롭다운 순서 >>
 장바구니
 찜한 상품
 주문목록
-리뷰관리
-- 작성가능한 리뷰
-- 내가 작성한 리뷰
+리뷰관리 - 작성가능한 리뷰 / 내가 작성한 리뷰
 계정관리
 
 재인증
@@ -26,6 +23,8 @@ PWchange : 비밀번호 변경
 ** ReAuth, MNprofile, PWchange, PWResult(비밀번호 변경 관련), : 계정정보변경 페이지
 ** Auth -> UserInfo -> ModalPage -> SignUpDone : 개인정보 
 
+업데이트 오류
+이미지 업로드 오류
 
 
 --- 아직 구현 다 안된 페이지 ---

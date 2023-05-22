@@ -1,3 +1,4 @@
+// 회원 정보 입력 페이지
 import { dbService, authService } from 'fbase';
 import React, { useEffect, useState } from 'react';
 import { getFirestore, addDoc, getDocs, collection, query, onSnapshot, orderBy, serverTimestamp } from "firebase/firestore";
@@ -12,7 +13,6 @@ const UserInfo = () => {
     const [userInfomation, setUserInfo] = useState([]);
 
     const navigate = useNavigate();
-    const InputDone = () => { navigate('/ModalPage');};    
 
     useEffect(() => {
             const q = query(collection(dbService, "userInfomation"));
@@ -39,7 +39,7 @@ const UserInfo = () => {
         } catch (error) {
             console.error("Error adding document: ", error);
         }
-        InputDone();
+        navigate('/ModalPage');
     };
 
     const onChange = (event) => {

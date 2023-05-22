@@ -9,7 +9,6 @@ import GoogleLogin from './btn_google_signin_light_normal_web.png';
 
 const Auth = () => {
     const navigate = useNavigate();
-    const InputUserInfo = () => { navigate('/UserInfo'); };
     
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -35,6 +34,7 @@ const Auth = () => {
         } catch(error){
             setError(error.message);
         }
+        navigate('/UserInfo');
     };
 
     const toggleAccount = () => setNewAccount((prev) => !prev);
@@ -44,6 +44,7 @@ const Auth = () => {
         let provider;
         if (name === "google"){ provider = new GoogleAuthProvider(); }
         const data = await signInWithPopup(authService, provider);
+        navigate('/UserInfo');
     };
 
     const onChange = (event) => {
@@ -70,8 +71,6 @@ const Auth = () => {
                     </form>
                         <div className='SignToggle' onClick={toggleAccount}>{newAccount ? "로그인" : "회원가입"}</div>
                         <img className='G-SingIn' src={GoogleLogin} onClick={onSocialClick} name="google" alt="구글로 로그인" />
-                        <input type='button' value="비밀번호 찾기" />
-                        {InputUserInfo}
                 </div>
             </>
              );
