@@ -12,7 +12,6 @@ const Navigation = () => <nav>
         <li><Link to="/UserInfo"> 사용자 정보 입력 </Link></li>
         <li><Link to="/MNprofile"> 계정 정보 수정 </Link></li>
         <li><Link to="/Auth">로그인/회원가입</Link></li>
-
     </ul>
 </nav>;
 

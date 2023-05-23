@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const MyPageNavibar = () => {
-    return(
+const MyPageNavibar = () => {<nav>
         <>
             <ul>
                 <li><Link to="/ProductCart">장바구니</Link></li>
@@ -14,7 +13,7 @@ const MyPageNavibar = () => {
                 <li><Link to="/MNprofile">계정 관리</Link></li>
             </ul>
         </>
-    );
+    </nav> 
 };
 
 export default MyPageNavibar;

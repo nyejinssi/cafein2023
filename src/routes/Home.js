@@ -15,8 +15,7 @@ const Home = () => {
 
     useEffect(() => {
         getReview();
-    }
-    , []);
+    }, []);
 
     return (
         <div>
