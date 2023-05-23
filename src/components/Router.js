@@ -13,7 +13,8 @@ import Logout from '../routes/Logout';
 import PWchange from '../routes/PWchange';
 import Like from '../routes/Like';
 import MyReview from 'routes/MyReview';
-import WebHeader from './Webheader';
+import shop from '../routes/shop';
+
 const AppRouter = ({isLoggedIn, userObj}) => {
     return (
         <BrowserRouter>
@@ -21,17 +22,17 @@ const AppRouter = ({isLoggedIn, userObj}) => {
             <Routes>
                 {isLoggedIn ? (
                 <>
-                    <Route exact path="/Home" element = {<Home/>} />
-                    <Route exact path="/Like" element ={<Like/>}/>
-                    <Route exact path='/Logout' element={<Logout/>}/>
-                    <Route exact path='/MNreview' element={<MNreview/>}/>
-                    <Route exact path='/MyReview' element={<MyReview/>}/>
-                    <Route exact path="/ReView" element ={<ReView/>}/>
-                    <Route exact path="/UserInfo" element ={<UserInfo/>}/>
-                    <Route exact path='/MNprofile' element={<MNprofile/>}/>
+                    <Route exact path="/Home/*" element = {<Home/>} />
+                    <Route exact path="/Like/*" element ={<Like/>}/>
+                    <Route exact path='/Logout/*' element={<Logout/>}/>
+                    <Route exact path='/MNreview/*' element={<MNreview/>}/>
+                    <Route exact path='/MyReview/*' element={<MyReview/>}/>
+                    <Route exact path="/ReView/*" element ={<ReView/>}/>
+                    <Route exact path="/UserInfo/*" element ={<UserInfo/>}/>
+                    <Route exact path='/MNprofile/*' element={<MNprofile/>}/>
                 </> 
                 ): (
-                    <Route exact path="/" element ={<Auth/>}/>            
+                    <Route exact path="/Auth/*" element ={<Auth/>}/>            
                 )}
             </Routes>
         </BrowserRouter>
