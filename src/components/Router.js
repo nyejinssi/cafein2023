@@ -5,7 +5,8 @@ import Navigation from "./Navigation";
 import UserInfoChange from "../routes/UserInfoChange";
 import Auth from "../routes/Auth";
 import UserInfo from "../routes/UserInfo";
-import ReView from "../routes/ReView";
+import NewReview from "../routes/NewReview";
+import MyReview from "../routes/MyReview";
 
 const AppRouter = ({isLoggedIn, userObj}) => {
     return (
@@ -16,7 +17,8 @@ const AppRouter = ({isLoggedIn, userObj}) => {
                 <>
                     <Route exact path="/UserInfoChange/*" element = {<UserInfoChange/>} />
                     <Route exact path="/UserInfo/*" element ={<UserInfo/>}/>
-                    <Route exact path="/ReView" element ={<ReView/>}/>
+                    <Route exact path="/NewReview" element ={<NewReview/>}/>
+                    <Route exact path="/MyReview" element ={<MyReview/>}/>
                 </> 
                 ): (
                     <Route exact path="/Auth/*" element ={<Auth/>}/>            
