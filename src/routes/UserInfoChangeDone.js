@@ -8,4 +8,3 @@ const UserInfoChangeDone = () => {
     };
 
 export default UserInfoChangeDone;
-

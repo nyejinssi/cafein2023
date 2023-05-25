@@ -38,6 +38,7 @@ const PWchange = () => {
             console.log(code);
             alert(errorMessage[code]);
         }
+        navigate('/PWResult');
     };
 
     const onChange = (event) => {
@@ -52,9 +53,9 @@ const PWchange = () => {
                     <input name="prepassword" type="password" value = {Prepswd} placeholder="기존 비밀번호" onChange={onChange} required/><br/>
                     <input name="newpassword" type="password" value = {newPassword} placeholder="새 비밀번호" onChange={onChange} required/><br/>
                     <input name="passwordcheck" type="password" value = {Newpswdcheck} placeholder="새 비밀번호 확인" onChange={onChange} required/><br/>
-                    <input type="submit" value="비밀번호 변경" />              
+                    <input type="submit" value="비밀번호 변경" />       
+                    PWResut 실행되어야함       
             </form>
-            {PWResultPage}
         </div>
     )
 };

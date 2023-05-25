@@ -1,86 +1,67 @@
-// 리뷰 페이지
 import { dbService, authService, storageService } from 'fbase';
-import React, { useEffect, useState, createRef } from 'react';
-import { getFirestore,  addDoc, getDocs, collection, query, onSnapshot, orderBy, serverTimestamp } from "firebase/firestore";
+import React,  { Component, useEffect, useState } from 'react';
+import { getFirestore, addDoc, getDocs, collection, query, onSnapshot, orderBy, serverTimestamp } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 import ReViewTmp from '../routes/ReViewTmp';
-import {ref, uploadString, getDownloadURL } from 'firebase/storage';
-import {v4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
+import {ref, uploadString, getDownloadURL } from "firebase/storage";
 
 const ReView = () => {
-    const [getDB, setGetDB] = useState([]);
     const [userreview, setUserreview] = useState("");
     const [userreviews, setUserreviews] = useState([]); 
-    const [File, setFile] = useState("");
+    const [attachment, setAttachment] = useState("");
     const user = authService.currentUser;
-    const navigate = useNavigate();
-    const ReviewDone = () => { navigate('/Home');};
-    
+
     useEffect(() => {
         const q = query(collection(dbService, "userReviews"));
         onSnapshot(q, (snapshot) => {
             const userreviewArray = snapshot.docs.map(doc => ({
-                ...doc.data(),
-                id: doc.id, 
+                ...doc.data(), id: doc.id, 
             }));
-        setUserreviews(userreviewArray);
-        });
-    }, []);
-
-    const getReviews = async () => {
-        const q = query(collection(dbService, "userReviews"));
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-            const userreviewfield = { ...doc.data(), id: doc.id };
-            setGetDB(prev => userreviewfield);});
-    };
+            setUserreviews(userreviewArray);
+        }); }, []);
 
     const onSubmit = async (event) => {
-        event.preventDefault();
-        let FileURL ="";
-        if(URL!= ""){
-            const fileRef = ref(storageService, `${user.uid}/${v4()}`);
-            const response = await uploadString(fileRef, 'data_url');
-            const FileURL = await getDownloadURL(response.ref);
+        event.preventDefault();        
+        let attachmentURL = "";
+        if (attachment !== ""){
+            const attachmentRef = ref(storageService, `${user.uid}/${uuidv4()}`);
+            const response = await uploadString(attachmentRef, attachment, 'data_url');
+            attachmentURL = await getDownloadURL(response.ref);
         }
-        const content = {
+
+        const ReviewContent = {
             text: userreview,
             createdAt: Date.now(),
             creatorId: user.uid,
-            FileURL: FileURL,
-        }
-        try {
-            await addDoc(collection(dbService, "userReviews"), content);
-            setUserreview("");
-            console.log("Document written with ID: ", storageService.userReviews.id);
-        } catch (error) {
-            console.error("Error adding document: ", error);
-        }         
-    };
-
-    const onChange = (event) => {
-        const { target: {value} } = event; 
-        setUserreview(value); 
-    };
-
-    const onFileChange = (event) => {
-        const { target: {files} } = event;
-        const myFile = files[0];
-        const reader = new FileReader();
-        reader.readAsDataURL(myFile);
-        reader.onloadend = (finished) => {
-            const {currentTarget : {result}} = finished;
-            setFile(result);
+            reviewimage : attachmentURL, 
         };
+
+        await addDoc(collection(dbService, "userReviews"), ReviewContent);
+        setAttachment("");
     };
 
-    const FileInput = React.createRef();
-    const onClearFile = () => {
-            setFile("");
-            FileInput.current.value = null;}
-    
+    const onChange = (event) => { 
+        const { target: {value} } = event;  
+        setUserreview(value); 
+        console.log(setUserreview(value)) 
+    };
 
+    const onFileChange = (event) => {  // 사진 미리보기 만들기
+        const { target: {files}, } = event; 
+        const theFile = files[0];
+        const reader = new FileReader();
+        reader.onloadend = (finishedEvent)  => {
+            const {
+                currentTarget: {result},
+                } = finishedEvent;
+                setAttachment(result);
+        };
+        reader.readAsDataURL(theFile);
+    };
+
+    const onClearAttachment = () => { setAttachment(""); };
 
     return (
         <div>
@@ -92,23 +73,25 @@ const ReView = () => {
                     maxLength = {120} 
                     onChange = {onChange} 
                 /> <br/>
-                <input type = "file" ref={FileInput} accept = "image/*" onChange={onFileChange}/>
+                <input type="file" accept="image/*" onChange={onFileChange}/>
                 <input type = "submit" value = "저장"/>
-                {File && (
+                {attachment && (
                     <div>
-                        <img src = {File} width = "100px" height = "80px" />
-                        <button onClick = {onClearFile}> X </button>
-                    </div>
-                    )}
+                        <img src = {attachment} width = "50px" height = "40px" />
+                        <button onClick = {onClearAttachment}> X </button>
+                    </div> 
+                )} 
             </form>
-
             <div>
                 {userreviews.map((userreview) => (
-                    <ReViewTmp key={userreview.id}/>
+                    <ReViewTmp 
+                        key={userreview.id} 
+                        userreviewObj={userreview} 
+                        isOwner={userreview.creatorId === user.uid}
+                    />
                 ))}
             </div>
-        </div>
-    );
+        </div> );
 };
 
 export default ReView;
