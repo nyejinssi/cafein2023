@@ -1,7 +1,7 @@
-// 회원 정보 입력 페이지
 import { dbService, authService } from 'fbase';
 import React, { useEffect, useState } from 'react';
 import { getFirestore, addDoc, getDocs, collection, query, onSnapshot, orderBy, serverTimestamp } from "firebase/firestore";
+import './UserInfo.css';
 import { useNavigate } from 'react-router-dom';
 import ModalPage from 'routes/ModalPage';
 import Home from 'routes/Home';
@@ -13,6 +13,7 @@ const UserInfo = () => {
     const [userInfomation, setUserInfo] = useState([]);
 
     const navigate = useNavigate();
+    const InputDone = () => { navigate('/ModalPage');};    
 
     useEffect(() => {
             const q = query(collection(dbService, "userInfomation"));
@@ -39,7 +40,7 @@ const UserInfo = () => {
         } catch (error) {
             console.error("Error adding document: ", error);
         }
-        navigate('/ModalPage');
+        InputDone();
     };
 
     const onChange = (event) => {
@@ -52,13 +53,26 @@ const UserInfo = () => {
     };
 
     return(
-        <div>
-            <form onSubmit = {onSubmit}> 
-                    <input value = {username} name= "usersname" type = "name" placeholder = " 이 름 " maxLength = {15} onChange = {onChange} required/> <br/>
-                    <input value = {userphonenumber} name="usersphonenumber" type = "tel" placeholder = " 전 화 번 호 " maxLength = {11} onChange = {onChange} required /> <br/>
-                    <input type = "submit" value = " 다음 " required/><br/>
+        <div className="UserInfo-box">
+            <h2>회원가입을 위해 이름과 전화번호를 입력해주세요.</h2>
+            <form>
+                <div className="user-box">
+                    <label style={{display:"inline",marginRight:"10%"}}>이름</label>
+                    <input className="InputUserName" value = {username} name= "usersname" type = "name" placeholder="홍길동" maxLength = {15} onChange = {onChange} required/>
+                </div>
+
+                <div className="user-box">
+                    <label>전화번호</label>
+                    <input className="InputUserPhone" value = {userphonenumber} name="usersphonenumber" placeholder="010-1111-1111" type = "tel" maxLength = {11} onChange = {onChange} required />
+                </div>
+
+                <span />
+                <span />
+                <span />
+                <span />
+                <input className="UserInfoNext" type = "submit" value = " 다음 " required/><br/>
             </form>
-        </div>
+            </div>
     );      
 };
 

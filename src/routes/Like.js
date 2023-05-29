@@ -1,14 +1,38 @@
+import { dbService, authService } from 'fbase';
+import React, { useEffect, useState } from 'react';
+import { collection, query, where, onSnapshot, getDocs, deleteDoc, doc } from 'firebase/firestore';
+import Likelist from './Likelist';
 // 찜한 상품
-import { useNavigate } from 'react-router-dom';
-import { authService } from 'fbase';
 
 const Like = () => {
-    const navigate = useNavigate();
-    return (
-      <div>
-        찜한 상품 게시물
-      </div>
-    )
-  };
+  const [userLike, setUserLike] = useState([]);
+  const user = authService.currentUser;
+
+  useEffect(() => {
+    const q = query(
+      collection(dbService, 'Like'),
+      where('UserID', '==', user.uid)
+    );
+        
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const userArray = snapshot.docs.map((doc)=>({
+        ...doc.data(), 
+        id: doc.id,}));
+      setUserLike(userArray);
+    },[user]);
+  });
+
+  return (
+    <div>
+      찜한 상품<br/>
+      {userLike.map((likes) => (
+            <Likelist
+              key={likes.id} 
+              like={likes}
+              />  
+      ))} 
+    </div>
+  );
+};
 
 export default Like;

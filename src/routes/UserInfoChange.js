@@ -1,64 +1,99 @@
 import { dbService, authService } from 'fbase';
 import React, { useEffect, useState } from 'react';
-import { getFirestore, doc, updateDoc, getDocs, collection, query, onSnapshot, orderBy, serverTimestamp } from "firebase/firestore";
+import { getFirestore, where, doc, updateDoc, getDocs, collection, query, onSnapshot, snapshot, orderBy, serverTimestamp } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
 import ChangeAddress from './ChangeAddress';
-import Home from 'routes/Home';
+import Home from '../routes/Home';
 
 const UserInfoChange = () => {
     const user = authService.currentUser;
-
-    const [username, setUsername] = useState("");
-    const [userphonenumber, setUserPhonenumber] = useState("");
-    const [userInfomation, setUserInfo] = useState([]);
+    const [NewUsername, setNewUsername] = useState("");
+    const [NewUserphonenumber, setNewUserPhonenumber] = useState("");
+    const [userInfo, setUserInfo] = useState([]);
+    const [editing, setEditing] = useState(false);
 
     const navigate = useNavigate();  
+
     useEffect(() => {
-        const q = query(collection(dbService, "userInfomation"));
+        const q = query(
+            collection(dbService, 'userInfomation'),
+            where('creatorId', '==', user.uid)
+        );
+
         onSnapshot(q, (snapshot) => {
-            const UserInfoArray = snapshot.docs.map(doc => ({
-            ...doc.data(),
-             id: doc.id,  }));
-            setUserInfo(UserInfoArray);
-             });
-        }, []);
+            const userInfoArray = snapshot.docs.map((doc) => ({
+                ...doc.data(),
+                id: doc.id,
+            }));
+            setUserInfo(userInfoArray);
+        }); 
+        console.log(userInfo);
+        console.log(user.uid);
+    }, [user.uid]); 
 
-     const onSubmit = async (event) => {
-         event.preventDefault();
-         try {
-            const userinfoRef = doc(dbService, "userInfomation");
-            const docRef = await updateDoc(userinfoRef, {
-                 name: username,
-                 number: userphonenumber,
-                 createdAt: Date.now() });
+    const onChange = (event) => {
+        const { target: { name, value } } = event; 
+        if (name === "usersname") {
+            setNewUsername(value); 
+        } else if (name === "usersphonenumber") {
+            setNewUserPhonenumber(value);
+        }
+    };
 
-                setUsername("");
-                setUserPhonenumber("");
-                console.log("Document written with ID: ", docRef.id);
-             } catch (error) {
-             console.error("Error adding document: ", error);
-         }
-         navigate("/ChangeAddress");
-     };
+    const onSubmit = async (event) => {
+        event.preventDefault();
+        const q = query(
+            collection(dbService, 'userInfomation'),
+            where('creatorId', '==', user.uid)
+        );
+        const snapshot = await getDocs(q);
+        
+        snapshot.forEach((doc) => {
+            const docRef = doc(dbService, `userInfomation/${doc.id}`);
+            updateDoc(docRef, {
+                name: NewUsername,
+                number: NewUserphonenumber,
+                updateDocTime: serverTimestamp(),
+            });
+        });
 
-     const onChange = (event) => {
-         const { target: {name, value} } = event; 
-         if (name === "usersname"){
-             setUsername(value); 
-         } else if (name === "usersphonenumber"){
-             setUserPhonenumber(value);
-         }
-     };
+        setNewUsername("");
+        setNewUserPhonenumber("");
+        setEditing(false); // editing 상태 업데이트
+        console.log(userInfo);
+    };
 
-     return(
-         <div>
-             <form onSubmit = {onSubmit}> 
-                     <input value = {username} name= "usersname" type = "name" placeholder = " 이 름 " maxLength = {15} onChange = {onChange} required/> <br/>
-                     <input value = {userphonenumber} name="usersphonenumber" type = "tel" placeholder = " 전 화 번 호 " maxLength = {11} onChange = {onChange} required /> <br/>
-                     <input type = "submit" value = " 다음 " required/><br/>
-             </form>
-         </div>
-     );      
- };
+    const EditCancel = () => {
+        setEditing((prev)=>!prev);
+        // 페이지 이동 ( Mypage Main)
+    };
 
- export default UserInfoChange;
+    return (
+        <div>
+            <form onSubmit={onSubmit}> 
+                <input
+                    value={NewUsername}
+                    name="usersname"
+                    type="name"
+                    placeholder="카페인"
+                    maxLength={15}
+                    onChange={onChange}
+                    required
+                /> <br/>
+                <input
+                    value={NewUserphonenumber}
+                    name="usersphonenumber"
+                    type="tel"
+                    placeholder="01012345678"
+                    maxLength={11}
+                    onChange={onChange}
+                    required
+                /> <br/>
+                <input type="submit" value=" 다음 " required/><br/>
+            </form>
+            <button onClick={EditCancel}>취소</button>
+        </div>
+    );      
+};
+
+export default UserInfoChange;

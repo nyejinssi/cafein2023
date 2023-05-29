@@ -12,6 +12,14 @@ const firebaseConfig = {
     messagingSenderId: process.env.MESSAGING_SENDER_ID,
     appId: process.env.APP_ID
 };
+const functions = require('firebase/functions');
+const admin = require('firebase-admin');
+const express = require('express');
+const axios = require('axios');
+const g = express();
+const bodyParser = require('body-parser');
+g.use(bodyParser.json());
+g.use(cors({origin: true}))
 
 const app = initializeApp(firebaseConfig);
 export const authService = getAuth();

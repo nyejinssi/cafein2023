@@ -6,7 +6,7 @@ import { dbService, authService } from "../fbase";
 import { getFirestore, addDoc, getDocs, where, collection, query, onSnapshot } from "firebase/firestore";
 import { useEffect } from "react";
 
-function ModalPage() {
+function ADChange(){
   const user = authService.currentUser;
   const [modalVisible, setModalVisible] = useState(false);
   const [isOpenSecondPopup, setIsOpenSecondPopup] = useState(false);
@@ -94,12 +94,10 @@ function ModalPage() {
             <div className="text">주소 : {address}</div> </div>
         ) : ( <div className="text">
             <span className="emph"></span> <br/></div> )}
-
-          <input type = "checkbox" value = "동의" required/> 여러분의 개인정보를 저장하는데 동의하십니까? <br/>
-          <button required>회원가입 완료하기</button>
+          <button required>정보 변경 완료하기</button>
         </form>
     </>
   );
 }
 
-export default ModalPage;
+export default ADChange;

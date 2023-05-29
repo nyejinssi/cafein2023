@@ -1,0 +1,679 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "product",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "caffein",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "coffee",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "equal",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isbean",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "level",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "roasting",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "price",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "product",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "caffein",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "coffee",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "equal",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isbean",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "level",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "roasting",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "roastinglevel",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "taste",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "price",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "product",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "caffein",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "coffee",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "equal",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isbean",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "level",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "roasting",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "taste",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "price",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "product",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "caffein",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "coffee",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "equal",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isbean",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "level",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "roastinglevel",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "taste",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "price",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "product",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "caffein",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "coffee",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "equal",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isbean",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "roasting",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "roastinglevel",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "taste",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "price",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "product",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "caffein",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "coffee",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isbean",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "level",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "roastinglevel",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "taste",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "price",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "product",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "caffein",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "coffee",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isbean",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "roasting",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "roastinglevel",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "taste",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "price",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "product",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "caffein",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "coffee",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isbean",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "roastinglevel",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "taste",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "price",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "product",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "caffein",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "coffee",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isbean",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "taste",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "price",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "product",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "caffein",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "equal",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isbean",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "level",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "roasting",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "price",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "product",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "caffein",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isbean",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "price",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "product",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "coffee",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "equal",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isbean",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "level",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "roasting",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "roastinglevel",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "taste",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "price",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "product",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "coffee",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "equal",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isbean",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "level",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "roastinglevel",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "taste",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "price",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "product",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "coffee",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isbean",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "price",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "product",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "coffee",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isbean",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "roasting",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "taste",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "price",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "product",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "coffee",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isbean",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "taste",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "price",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "product",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "equal",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isbean",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "level",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "roasting",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "price",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "product",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "equal",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isbean",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "price",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "product",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isbean",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "level",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "price",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "product",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isbean",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "level",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "roasting",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "price",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "product",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isbean",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "price",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "product",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isbean",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "roasting",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "price",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "product",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isbean",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "roasting",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "taste",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "price",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "product",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isbean",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "roastinglevel",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "price",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "product",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isbean",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "taste",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "price",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

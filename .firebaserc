@@ -1,0 +1,11 @@
+{
+  "projects": {
+    "default": "cafein-dd39e"
+  },
+  "targets": {},
+  "etags": {
+    "cafein-dd39e": {
+      "extensionInstances": {}
+    }
+  }
+}

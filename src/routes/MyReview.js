@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import ReviewED from './ReviewED';
 
+{/*Written Review*/}
 const MyReview = () => {
   const [userReviews, setUserReviews] = useState([]);
   const user = authService.currentUser;
